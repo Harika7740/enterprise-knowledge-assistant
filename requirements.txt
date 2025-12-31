@@ -1,0 +1,12 @@
+streamlit
+groq
+faiss-cpu
+nltk
+pypdf
+python-docx
+python-pptx
+pandas
+pillow
+pytesseract
+python-dotenv
+sentence-transformers
