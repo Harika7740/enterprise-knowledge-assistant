@@ -10,3 +10,4 @@ pillow
 pytesseract
 python-dotenv
 sentence-transformers
+nltk
