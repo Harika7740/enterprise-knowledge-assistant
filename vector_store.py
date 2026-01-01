@@ -1,14 +1,19 @@
-# vector_store.py - FIXED for Streamlit Cloud
+# vector_store.py - FINAL FIXED for Streamlit Cloud (punkt_tab issue solved)
 from sentence_transformers import SentenceTransformer
 import faiss
 import numpy as np
 import nltk
 
-# Safe NLTK download - works on Streamlit Cloud
+# Download both punkt and punkt_tab safely
 try:
     nltk.data.find('tokenizers/punkt')
 except LookupError:
     nltk.download('punkt', quiet=True)
+
+try:
+    nltk.data.find('tokenizers/punkt_tab')
+except LookupError:
+    nltk.download('punkt_tab', quiet=True)
 
 embedder = SentenceTransformer("all-MiniLM-L6-v2")
 
