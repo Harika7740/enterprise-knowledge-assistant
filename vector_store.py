@@ -1,10 +1,14 @@
-# vector_store.py
+# vector_store.py - FIXED for Streamlit Cloud
 from sentence_transformers import SentenceTransformer
 import faiss
 import numpy as np
 import nltk
 
-nltk.download('punkt', quiet=True)
+# Safe NLTK download - works on Streamlit Cloud
+try:
+    nltk.data.find('tokenizers/punkt')
+except LookupError:
+    nltk.download('punkt', quiet=True)
 
 embedder = SentenceTransformer("all-MiniLM-L6-v2")
 
