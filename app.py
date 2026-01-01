@@ -1,4 +1,4 @@
-# app.py - Clear Chat now properly clears conversation
+# app.py - FIXED: Replace old docs on new upload (no more old answers)
 import streamlit as st
 from document_loader import load_document
 from rag_pipeline import build_index, get_answer
@@ -31,8 +31,8 @@ col_clear, col_spacer = st.columns([1, 5])
 with col_clear:
     if st.session_state.indexed:
         if st.button("Clear Chat"):
-            st.session_state.history = []   # ← This clears the conversation
-            st.rerun()                      # ← Immediate refresh to show empty chat
+            st.session_state.history = []   # Clears conversation
+            st.rerun()                      # Immediate refresh
 
 # Left-aligned uploader
 st.markdown(
@@ -44,7 +44,7 @@ st.markdown(
 
 files = st.file_uploader(
     "Drag and drop file here",
-    type=["pdf", "docx", "pptx", "xlsx", "csv", "txt", "jpg", "jpeg", "png"],
+    type=["pdf", "docx", "pptx", "xlsx", "xls", "csv", "txt", "jpg", "jpeg", "png"],
     accept_multiple_files=False,
     help="Limit 200MB per file • PDF, DOCX, PPTX, XLSX, CSV, TXT, JPG, JPEG, PNG",
     label_visibility="collapsed"
@@ -67,8 +67,8 @@ if files:
                 st.error(f"Failed to process {f.name}")
 
     if new_docs:
+        st.session_state.docs = new_docs  # ← FIXED: Replace old docs (no extend)
         build_index([(t, m) for t, m, _ in new_docs])
-        st.session_state.docs.extend(new_docs)
         st.session_state.indexed = True
 
 # Chat history
