@@ -1,0 +1,12 @@
+# requirements.txt (unchanged - add if missing, but it's fine)
+streamlit
+groq
+faiss-cpu
+pypdf
+python-docx
+python-pptx
+pandas
+pillow
+pytesseract
+python-dotenv
+sentence-transformers
